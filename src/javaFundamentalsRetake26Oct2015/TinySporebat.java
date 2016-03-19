@@ -1,4 +1,4 @@
-    package javaBasics26Oct2015;
+    package javaFundamentalsRetake26Oct2015;
 
     import java.util.*;
 
