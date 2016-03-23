@@ -7,22 +7,11 @@ import java.util.*;
  *
  * Description, solution and test can be found at:
  * https://softuni.bg/downloads/svn/java-basics/Exams/2015-11-15/Problem03-Rubik's-Matrix.zip
- *
- * NOTE: Not finished yet!
  */
 public class RubiksMatrix {
 
-    private static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
-    }
-
     private static void moveRow(int[][] matrix, int row, int moves, String direction) {
-        for (int i = 0; i < moves; i++) {
+        for (int i = 0; i < moves % matrix[0].length; i++) {
             if (direction.equals("right")) {
                 int[] newRow = new int[matrix[row].length];
                 for (int j = 1; j < matrix[row].length; j++) {
@@ -45,7 +34,7 @@ public class RubiksMatrix {
     }
 
     private static void moveCol(int[][] matrix, int col, int moves, String direction) {
-        for (int i = 0; i < moves; i++) {
+        for (int i = 0; i < moves % matrix.length; i++) {
             if (direction.equals("down")) {
                 int[] newCol = new int[matrix.length];
                 for (int j = 1; j < matrix.length; j++) {
@@ -101,7 +90,28 @@ public class RubiksMatrix {
 
         }
 
-        printMatrix(matrix);
+        number = 1;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (matrix[i][j] != number) {
+                    for (int k = 0; k < r; k++) {
+                        for (int l = 0; l < c; l++) {
+                            if (matrix[k][l] == number) {
+                                System.out.printf("Swap (%d, %d) with (%d, %d)\n", i, j, k, l);
+                                int temp = matrix[k][l];
+                                matrix[k][l] = matrix[i][j];
+                                matrix[i][j] = temp;
+                            }
+                        }
+                    }
+                } else {
+                    System.out.println("No swap required");
+                }
+                number++;
+            }
+
+        }
+
 
     }
 }
