@@ -9,18 +9,8 @@ import java.util.regex.Pattern;
  *
  * Description can be found at:
  * https://judge.softuni.bg/Contests/Practice/DownloadResource/1181
- *
- * NOTE: Gets only 80% score on the Open Judge System, waiting for tests to check and fix.
  */
 public class Events {
-
-    private static boolean isValidTime(String time) {
-        int separator = time.indexOf(":");
-        int hour = Integer.parseInt(time.substring(0, separator));
-        int minutes = Integer.parseInt(time.substring(separator+1));
-
-        return hour <= 23 && minutes <= 59;
-    }
 
     public static void main(String[] args) {
 
@@ -29,7 +19,7 @@ public class Events {
 
         Map<String, Map<String, List<String>>> eventMap = new HashMap<>();
 
-        Pattern pattern = Pattern.compile("(#[a-zA-Z]+:)\\s*(@[a-zA-Z]+)\\s*((?:[01]?\\d|2[0-3]):[0-5]\\d)");
+        Pattern pattern = Pattern.compile("^(#[a-zA-Z]+:)\\s*(@[a-zA-Z]+)\\s*((?:[01]?\\d|2[0-3]):[0-5]\\d)$");
         for (int i = 0; i < n; i++) {
             String line = input.nextLine().trim();
             Matcher match = pattern.matcher(line);
@@ -40,10 +30,6 @@ public class Events {
 
                 person = person.substring(1, person.length()-1);
                 location = location.substring(1);
-
-//                if (!isValidTime(hour)) {
-//                    break;
-//                }
 
                 if (!eventMap.containsKey(location)) {
                     List<String> times = new ArrayList<>();
