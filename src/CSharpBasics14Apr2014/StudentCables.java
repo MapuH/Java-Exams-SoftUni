@@ -1,6 +1,6 @@
 package CSharpBasics14Apr2014;
 
-import java.util.*;
+import java.util.Scanner;
 
 /*
  * Created by MapuH on 31-Mar-2016
@@ -14,7 +14,8 @@ public class StudentCables {
 
         Scanner input = new Scanner(System.in);
         int n = Integer.parseInt(input.nextLine());
-        List<Integer> cables = new ArrayList<>();
+        int jointCable = 0;
+        int count = 0;
 
         for (int i = 0; i < n; i++) {
             int length = Integer.parseInt(input.nextLine());
@@ -25,17 +26,14 @@ public class StudentCables {
             }
 
             if (length >= 20) {
-                cables.add(length);
+                jointCable += length;
+                count ++;
             }
         }
 
-        int totalLength = 0;
-        for (int cable : cables) {
-            totalLength += cable;
-        }
-        totalLength = totalLength - (cables.size() - 1) * 3;
+        jointCable = jointCable - (count - 1) * 3;
 
-        System.out.println(totalLength / 504);
-        System.out.println(totalLength % 504);
+        System.out.println(jointCable / 504);
+        System.out.println(jointCable % 504);
     }
 }
